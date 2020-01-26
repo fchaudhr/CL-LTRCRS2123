@@ -338,15 +338,19 @@
 <p>On the <strong>SSH</strong> connection, <strong>execute</strong> the below <strong>command</strong> to verify that system related configurations on this vEdge: </p>
 <pre><code>show run system
 </code></pre>
-<p>As shown in the partial output in the below screenshot, the vEdge has been pre-configured with below system related configurations:
-*  hostname
-*  system-ip
-*  site-id
-*  organization name
-*  vBond DNS name of <code>vbond.cisco.com</code> </p>
-<p><img alt="AWS Devices" src="../pics/t7-AWS-vEdge1showsystem.png" /></p>
+</li>
+<li>
+<p>As shown in the partial output in the below screenshot, the vEdge has been pre-configured with below system related configurations:</p>
+<ul>
+<li>hostname</li>
+<li>system-ip</li>
+<li>site-id</li>
+<li>organization name</li>
+<li>vBond DNS name of <code>vbond.cisco.com</code> </li>
+</ul>
 </li>
 </ul>
+<p><img alt="AWS Devices" src="../pics/t7-AWS-vEdge1showsystem.png" /></p>
 <table>
 <thead>
 <tr>
@@ -364,9 +368,7 @@
 <p><strong>Execute</strong> the below <strong>command</strong> to see the configuration related to WAN connections or Transport connections on this vEdge.  In Cisco SD-WAN, VPN 0 is allocated for Transport/WAN links:</p>
 <pre><code>show run vpn 0
 </code></pre>
-<p>Below screenshot shows the partial output of this command.  This command will confirm that:
-* vEdge has one WAN link (under VPN 0) as per interface ge0/0 configuration
-* WAN link tunnel interface is configured with color public-internet which is a public color</p>
+<p>Below screenshot shows the partial output of this command.  This command will confirm that; vEdge has one WAN link (under VPN 0) as per interface ge0/0 configuration and WAN link tunnel interface is configured with color public-internet which is a public color.</p>
 <p><img alt="AWS Devices" src="../pics/t7-AWS-vEdge1showvpn0.png" /></p>
 </li>
 <li>
@@ -391,9 +393,8 @@ show certificate installed
 </li>
 <li>
 <p>In order to verify that related template is successfully attached,  execute below <strong>command</strong>:</p>
-<p>~~~
-show system status
-~~~ </p>
+<pre><code>show system status
+</code></pre>
 <p>The output of above command should show that it is centrally configured by vManage and also provides the name of Template:</p>
 <ul>
 <li><code>vManaged: true</code></li>

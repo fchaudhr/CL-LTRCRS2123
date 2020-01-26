@@ -218,10 +218,10 @@
 </code></pre>
 
 <p><img alt="VPN 512" src="../pics/t8a-show ip route vpn 20-br1.png" /></p>
-<p>As shown in the output in the below screenshot, preffix 10.20.2.1/32 (BR2 VPN 20 Loopback20) is directly received from  TLOC IP 10.4.0.1 (BR2-TlOC) from both links (MPLS and Private1).</p>
-<p>Also preffix 10.20.100.1/32 (DC-vEdge loopback20) is directly received from TLOC IP 10.1.0.1 (DC-vEdge) from both links (MPLS and Private1).</p>
+<p>As shown in the output in the below screenshot, prefix 10.20.2.1/32 (BR2 VPN 20 Loopback20) is directly received from  TLOC IP 10.4.0.1 (BR2-TlOC) from both links (MPLS and Private1).</p>
+<p>Also prefix 10.20.100.1/32 (DC-vEdge loopback20) is directly received from TLOC IP 10.1.0.1 (DC-vEdge) from both links (MPLS and Private1).</p>
 <ul>
-<li>Lets look at the screenshots from BR2 which shows that all preffixes are directly received from respective vEdges.</li>
+<li>Lets look at the screenshots from BR2 which shows that all prefixes are directly received from respective vEdges.</li>
 </ul>
 <p><img alt="" src="../pics/t8a-show ip route vpn20-BR2.png" /></p>
 <p>Below is the output for DC-vEDGE</p>
@@ -622,7 +622,7 @@ control-policy Hub-Spoke out
 </code></pre>
 </li>
 </ul>
-<p>You can notice that the preffix 10.20.2.1/32 (BR2 VPN 20 Loopback20) is now received from  TLOC IP 10.1.0.1 (DC-TlOC) from both links (MPLS and Private1).</p>
+<p>You can notice that the prefix 10.20.2.1/32 (BR2 VPN 20 Loopback20) is now received from  TLOC IP 10.1.0.1 (DC-TlOC) from both links (MPLS and Private1).</p>
 <p><img alt="" src="../pics/t8a-Route-Verify-BR1.png" /></p>
 <p>Verify the same from BR2 and you see prefixes are received from DC.</p>
 <p><img alt="" src="../pics/t8a-Route-Verify-BR2.png" /></p>

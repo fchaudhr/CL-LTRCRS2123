@@ -179,7 +179,7 @@
                 <h1 id="task-7b-configuring-cloud-onramp-for-iaas">Task 7b - Configuring Cloud onRamp for IaaS</h1>
 <p>Cloud onRamp for IaaS allows remote branches and data centers with vEdge routers to connect directly to public cloud providers.</p>
 <p>This Task will walk through the steps to configure <strong>Cloud OnRamp for IaaS</strong> that extends the fabric of the Viptela overlay network into public cloud instances.</p>
-<p>As per previous steps, two (2) vEdges in Branch 1 and Branch 2 and one (1) vEdge in DC have been onboarded. This Task will add two (2) redundant vEdge Cloud routers which will act together as a transit betwwen SDWAN overlay network and public cloud instances.</p>
+<p>As per previous steps, two (2) vEdges in Branch 1 and Branch 2 and one (1) vEdge in DC have been onboarded. This Task will add two (2) redundant vEdge Cloud routers which will act together as a transit between SDWAN overlay network and public cloud instances.</p>
 <p><strong>Pre-requisite 1:</strong>  SDWAN controllers must be fully operational.  If those are not installed (or operational) then please complete the previous Tasks first.</p>
 <p><strong>Pre-requisite 2:</strong>  Pre-configured three (3) vEdges (in Branch 1, Branch 2 and DC) must be fully operational.  If those are not operational then please complete the previous Tasks first.</p>
 <p><strong>Pre-requisite 3:</strong> At least 2 unused vEdge Cloud devices with AWS templates attached should be available in vManage. This is to add new cloud instances. If those are not attached then please complete Task 7a first.</p>
@@ -195,8 +195,8 @@
 <p>Use credentials of the following:</p>
 <ul>
 <li>Account ID = <code>807272386705</code></li>
-<li>IAM user name = <code>CLUS_User#</code> <code>#=1,2,3,...,16</code></li>
-<li>Password = <code>CLUS19</code></li>
+<li>IAM user name = <code>CLEUR_User#</code> <code>#=1,2,3,...,16</code></li>
+<li>Password = <code>CLEUR20</code></li>
 </ul>
 <table>
 <thead>
@@ -206,7 +206,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">The number sign <code>#</code> needs to be replaced by your pod number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your IAM user name. As an example for <code>pod1</code> IAM user name should be <code>CLUS_User1</code></td>
+<td align="left">The number sign <code>#</code> needs to be replaced by your pod number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your IAM user name. As an example for <code>pod1</code> IAM user name should be <code>CLEUR_User1</code></td>
 </tr>
 </tbody>
 </table>
@@ -220,13 +220,9 @@
 </ul>
 <p><img alt="AWS hostVPC" src="../pics/t7-AWS_AMI3.png" /></p>
 <ul>
-<li>Verify you are already subscribed to this product.</li>
+<li>Verify you are already subscribed to this software.</li>
 </ul>
 <p><img alt="AWS hostVPC" src="../pics/t7-AWS_AMI4.png" /></p>
-<ul>
-<li>Do the same for <strong>Viptela vEdge Cloud Router</strong></li>
-</ul>
-<p><img alt="AWS hostVPC" src="../pics/t7-AWS_AMI5.png" /></p>
 <p><a name="Step2"></a></p>
 <h2 id="step-2-create-host-vpc-in-aws">Step 2: Create host VPC in AWS</h2>
 <p>In this step we will create host VPC (Virtual Private Cloud) in respective AWS region which will be identified in next steps.</p>
@@ -237,8 +233,8 @@
 <p>Use credentials of the following:</p>
 <ul>
 <li>Account ID = <code>807272386705</code></li>
-<li>IAM user name = <code>CLUS_User#</code> <code>#=1,2,3,...,16</code></li>
-<li>Password = <code>CLUS19</code></li>
+<li>IAM user name = <code>CLEUR_User#</code> <code>#=1,2,3,...,16</code></li>
+<li>Password = <code>CLEUR20</code></li>
 </ul>
 <table>
 <thead>
@@ -248,16 +244,16 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">The number sign <code>#</code> needs to be replaced by your pod number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your IAM user name. As an example for <code>pod1</code> IAM user name should be <code>CLUS_User1</code></td>
+<td align="left">The number sign <code>#</code> needs to be replaced by your pod number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your IAM user name. As an example for <code>pod1</code> IAM user name should be <code>CLEUR_User1</code></td>
 </tr>
 </tbody>
 </table>
 <p><img alt="AWS Login" src="../pics/t7-AWS_login.png" /></p>
-<p>Once connected to AWS Management Console, verify <strong>US East (N. Virginia)</strong> region is selected on the navigation bar. Please see below for details:</p>
+<p>Once connected to AWS Management Console, verify the correct region is selected on the navigation bar. Please see below for details:</p>
 <table>
 <thead>
 <tr>
-<th align="left">Note:</th>
+<th align="left">CLEUR_User1,2,3 and 4:</th>
 </tr>
 </thead>
 <tbody>
@@ -272,21 +268,66 @@
 <table>
 <thead>
 <tr>
+<th align="left">CLEUR_User5,6,7 and 8:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Region Name= US West (N.California)</td>
+</tr>
+<tr>
+<td align="left">Code Name= us-west-1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">CLEUR_User9,10,11 and 12:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Region Name= Europe (Ireland)</td>
+</tr>
+<tr>
+<td align="left">Code Name= eu-west-1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="left">CLEUR_User13,14,15 and 16:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Region Name= Europe (London)</td>
+</tr>
+<tr>
+<td align="left">Code Name= eu-west-2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
 <th align="left">Note:</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">If you have created AWS resources, but you don’t see those resources in the console, the console might be displaying resources from a different Region. Please make sure to select <strong>US East (N.Virginia)</strong> region. Otherwise for any activity you try to execute, <code>You are not authorized to perform this operation.</code> message will pop-up.</td>
+<td align="left">If you have created AWS resources, but you don’t see those resources in the console, the console might be displaying resources from a different Region. Please make sure to select the correct region; as an example <strong>US East (N.Virginia)</strong> should be selected by <strong>CLEUR_User1</strong>.</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>Select region list from up-right corner of the console as shown below and select your respective region as <strong>US East (N. Virginia)</strong>.</li>
+<li>Select region list from up-right corner of the console as shown below and select your respective region; as an example <strong>US East (N. Virginia)</strong> should be selected by <strong>CLEUR_User1</strong>.</li>
 </ul>
 <p><img alt="AWS Region" src="../pics/t7-AWS_region_verfication.png" /></p>
 <ul>
-<li>Then click on <code>Services</code> on the navigation pane and select <strong>VPC</strong> from <strong>Network &amp; Content Delivery</strong> menu.</li>
+<li>Then click on <code>Services</code> on the navigation pane and select <strong>VPC</strong> from <strong>Networking &amp; Content Delivery</strong> menu.</li>
 </ul>
 <p><img alt="AWS hostVPC" src="../pics/t7-AWS_select_VPC.png" /></p>
 <ul>
@@ -309,7 +350,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">The number sign <code>#</code> needs to be replaced by your IAM user name number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your host VPC. As an example for <code>CLUS_User1</code> host VPC name should be <code>SDWAN-hostVPC1</code></td>
+<td align="left">The number sign <code>#</code> needs to be replaced by your IAM user name number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your host VPC. As an example for <code>CLEUR_User1</code> host VPC name should be <code>SDWAN-hostVPC1</code></td>
 </tr>
 </tbody>
 </table>
@@ -327,7 +368,7 @@
 <p>Different types of security credentials are used depending on how you interact with AWS. For example, you use a user name and password to sign in to the AWS Management Console.  Additionally, you use access keys to make programmatic calls to AWS API operations or to use AWS CLI commands. We will use  access keys in next step.  </p>
 <ul>
 <li>The Access keys can be found in <code>accessKeys.csv</code> file within following box folder:
-<a href="https://bit.ly/2KcPg10">https://bit.ly/2KcPg10</a></li>
+<a href="https://cisco.box.com/s/323cnv2n5x25f7quace3drch0hvbtwb0">https://cisco.box.com/s/323cnv2n5x25f7quace3drch0hvbtwb0</a></li>
 </ul>
 <table>
 <thead>
@@ -414,7 +455,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Please make sure to select the right AWS region as <strong>us-east-1 (N. Virginia)</strong>. If you are not sure which AWS region you are working in, then please complete <a href="#Step2">Step 2</a> first.</td>
+<td align="left">Please make sure to select the correct AWS region. If you are not sure which AWS region you have to select, then please complete <a href="#Step2">Step 2</a> first.</td>
 </tr>
 </tbody>
 </table>
@@ -426,8 +467,8 @@
 <li>Using <code>#=1,2,3,...,16</code> name the transit VPC as <code>SDWAN-transitVPC#</code> </li>
 <li>Select <code>18.3.0</code> as the <strong>WAN Edge Version</strong> from drop-down menu</li>
 <li>Select <code>c4.large (2 vCPU)</code> for <strong>Size of the Transit vEdge</strong></li>
-<li>Select <code>vEdge1 : uuid</code> as <strong>Device 1</strong></li>
-<li>Select <code>vEdge2 : uuid</code> as <strong>Device 2</strong></li>
+<li>Select <code>vEdge1 : 9e785ad7-558a-40c6-b0c0-fcc96e6d04ca</code> as <strong>Device 1</strong></li>
+<li>Select <code>vEdge2 : 52c7911f-c5b0-45df-b826-3155809a2a1a</code> as <strong>Device 2</strong></li>
 <li>Expand <strong>Advanced</strong> menu if you wish to enter more specific configuration options. For this lab, we will leave rest of the options as default and click on <code>Proceed to Discovery and Mapping</code> to move forward.</li>
 </ul>
 </li>
@@ -440,7 +481,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">The number sign <code>#</code> needs to be replaced by your IAM user name number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your transit VPC. As an example for <code>CLUS_User1</code> transit VPC name should be <code>SDWAN-transitVPC1</code></td>
+<td align="left">The number sign <code>#</code> needs to be replaced by your IAM user name number<code>(#=1,2,3,...,16)</code>. Use given number while identifying your transit VPC. As an example for <code>CLEUR_User1</code> transit VPC name should be <code>SDWAN-transitVPC1</code></td>
 </tr>
 </tbody>
 </table>
@@ -450,7 +491,7 @@
 </ul>
 <p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_CloudonRamp_Discover.png" /></p>
 <ul>
-<li>On the next screen, please verify desired Host VPC in <strong>Discovered Host VPCs</strong> step which has been created in <a href="#Step2">Step 2</a>. Please see below screenshot for <code>CLUS_User1</code> and discovered Host VPC is <code>SDWAN-hostVPC1</code>. Checkmark it and then click <code>Next</code>.</li>
+<li>On the next screen, please verify desired Host VPC in <strong>Discovered Host VPCs</strong> step which has been created in <a href="#Step2">Step 2</a>. Please see below screenshot for <code>CLEUR_User1</code> and discovered Host VPC is <code>SDWAN-hostVPC1</code>. Checkmark it and then click <code>Next</code>.</li>
 </ul>
 <table>
 <thead>
@@ -460,7 +501,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Please make sure to select the right AWS region as <strong>us-east-1 (N. Virginia)</strong>. If you are not sure which AWS region you are working in, then please complete <a href="#Step2">Step 2</a> first</td>
+<td align="left">Please make sure to select the correct AWS region as. If you are not sure which AWS region you are working in, then please complete <a href="#Step2">Step 2</a> first</td>
 </tr>
 <tr>
 <td align="left">If you don’t see Host VPC in the console, then please complete the <a href="#Step2">Step 2</a> first.</td>
@@ -474,7 +515,7 @@
 <p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_CloudonRamp_MapVPC.png" /></p>
 <ul>
 <li>The <strong>Map Host VPCs</strong> pop-up window opens, make sure following parameters are configured and then click <code>Map VPCs</code>.<ul>
-<li>Using <code>#=1,2,3,...,16</code> verify <strong>Transit VPC</strong> as <code>SDWAN-transitVPC#</code>. As an example, it should be <code>SDWAN-transitVPC1</code> for <code>CLUS_User1</code></li>
+<li>Using <code>#=1,2,3,...,16</code> verify <strong>Transit VPC</strong> as <code>SDWAN-transitVPC#</code>. As an example, it should be <code>SDWAN-transitVPC1</code> for <code>CLEUR_User1</code></li>
 <li>Verify <strong>VPN</strong> as <code>10</code></li>
 <li>Enable <strong>Route Propagation</strong> to ensure that <strong>Transit VPC</strong> receives the routes.</li>
 </ul>
