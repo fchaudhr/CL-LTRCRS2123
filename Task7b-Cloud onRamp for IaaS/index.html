@@ -102,7 +102,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#step-1-verify-cisco-sdwan-and-viptela-vedge-amis-subscription">Step 1: Verify Cisco SDWAN and Viptela vEdge AMIs Subscription</a></li>
+            <li><a class="toctree-l3" href="#step-1-verify-cisco-sdwan-vedge-amis-subscription">Step 1: Verify Cisco SDWAN vEdge AMIs Subscription</a></li>
         
             <li><a class="toctree-l3" href="#step-2-create-host-vpc-in-aws">Step 2: Create host VPC in AWS</a></li>
         
@@ -184,8 +184,8 @@
 <p><strong>Pre-requisite 2:</strong>  Pre-configured three (3) vEdges (in Branch 1, Branch 2 and DC) must be fully operational.  If those are not operational then please complete the previous Tasks first.</p>
 <p><strong>Pre-requisite 3:</strong> At least 2 unused vEdge Cloud devices with AWS templates attached should be available in vManage. This is to add new cloud instances. If those are not attached then please complete Task 7a first.</p>
 <p>You configure and manage <strong>Cloud OnRamp for IaaS</strong> through the vManage. A configuration wizard in the vManage automates the bring-up the transit to your public cloud account and automates the connections between public-cloud and branches in SDWAN overlay network.</p>
-<h2 id="step-1-verify-cisco-sdwan-and-viptela-vedge-amis-subscription">Step 1: Verify Cisco SDWAN and Viptela vEdge AMIs Subscription</h2>
-<p>In this step you will verify Cisco SDWAN and Viptela vEdge Amazon Machine Images (AMIs) subscription in AWS marketplace with your AWS user account in order to use the Cloud OnRamp for IaaS and other SDWAN services. You subscribe to these AMI only once.</p>
+<h2 id="step-1-verify-cisco-sdwan-vedge-amis-subscription">Step 1: Verify Cisco SDWAN vEdge AMIs Subscription</h2>
+<p>In this step you will verify Cisco SDWAN vEdge Amazon Machine Images (AMIs) subscription in AWS marketplace with your AWS user account in order to use the Cloud OnRamp for IaaS and other SDWAN services. You subscribe to these AMI only once.</p>
 <p>To create a new AMI subscription:</p>
 <p>Log on to AWS marketplace from a web browser (if not already open) and click on <strong>Sign In</strong> </p>
 <pre><code>https://aws.amazon.com/marketplace
@@ -639,6 +639,85 @@
 <li><strong>Configuration &gt; Cloud onRamp for Iaas</strong> GUI final view will be as shown below.</li>
 </ul>
 <p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_CloudonRamp_CreateAWS10.png" /></p>
+<p><strong>Troubleshooting Cisco vEdge Cloud Router on AWS public cloud</strong></p>
+<p>In case you will experience <strong>Cloud onRamp for IaaS</strong> task failure due to AWS resources, you can follow below troubleshooting steps.</p>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_Troubleshooting.png" /></p>
+<p><strong>Troubleshooting Option 1</strong></p>
+<ul>
+<li><strong>Assumption:</strong> AWS EC2 instances are provisioned and in running state. Verify EC2 instances from AWS Managenment console.</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_CloudonRamp_CreateAWS8.png" /></p>
+<ul>
+<li>
+<p><strong>Step 1:</strong> Go to <strong>Configuration &gt; Cloud onRamp for Iaas</strong> and click green arrow on <code>Mapped Host VPCs</code> section. This will open up a new browser.</p>
+</li>
+<li>
+<p><strong>Step 2:</strong> Click <code>Un-Mapped Host VPCs</code> which will enable <code>Select an account to discover</code> box to select AWS account. Select AWS Account ID = <code>807272386705</code></p>
+</li>
+<li>
+<p><strong>Step 3:</strong> Click <code>Discover Host VPCs</code> and then select host VPC from the list. You can verify your host VPC name from AWS management console.</p>
+</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_Troubleshooting2.png" /></p>
+<ul>
+<li><strong>Step 4:</strong> Click <code>Map VPCs</code></li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_Troubleshooting3.png" /></p>
+<ul>
+<li>
+<p><strong>Step 5:</strong> Select below parameters on <code>Map Host VPCs</code> pop-up page and then click <code>Map VPCs</code></p>
+<ul>
+<li><strong>Transit VPC:</strong> Your transit VPC name created by vManage. You can verify your Transit VPC name from AWS management console.</li>
+<li><strong>VPN:</strong> <code>10</code></li>
+<li>Enable <strong>Route Propagation</strong> to ensure that <strong>Transit VPC</strong> receives the routes.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_Troubleshooting4.png" /></p>
+<ul>
+<li><strong>Step 6:</strong> Verify host and transit VPCs are mapped, route propagation is enabled and required configuration is completed on AWS side.</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_Troubleshooting5.png" /></p>
+<p><strong>Troubleshooting Option 2</strong></p>
+<ul>
+<li>Complete <code>Task 11: Delete Cloud onRamp for IaaS</code> and then repeat <a href="#Step4">Step 4</a>.</li>
+</ul>
+<p><strong>Troubleshooting Option 3</strong></p>
+<ul>
+<li>
+<p>Complete <code>Task 11: Delete Cloud onRamp for IaaS</code> and then repeat <a href="#Step4">Step 4</a>.</p>
+</li>
+<li>
+<p>Once <strong>Map Host VPCs</strong> pop-up window opens, make sure following parameters are configured and then click <code>Map VPCs</code>.</p>
+<ul>
+<li>Using <code>#=1,2,3,...,16</code> verify <strong>Transit VPC</strong> as <code>SDWAN-transitVPC#</code>. As an example, it should be <code>SDWAN-transitVPC1</code> for <code>CLEUR_User1</code></li>
+<li>Verify <strong>VPN</strong> as <code>10</code></li>
+<li><code>Disable</code> <strong>Route Propagation</strong> to ensure that <strong>Transit VPC</strong> receives the routes.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_MapVPC_nopropagate.png" /></p>
+<ul>
+<li>Continue same as in <a href="#Step4">Step 4</a> and verify <strong>Cloud onRamp for IaaS</strong> task has been completed successfully as below.</li>
+</ul>
+<p><img alt="AWS CloudonRamp" src="../pics/t7-AWS_CloudonRamp_CreateAWS9.png" /></p>
+<ul>
+<li>Login to AWS management console with your given user name and password and make sure that a new VPW (virtual private gateway) on respective region is created by selecting <code>VPC</code> and then <code>Virtual Private Gateway</code>. </li>
+</ul>
+<p><img alt="AWS hostVPC" src="../pics/t7-AWS_VPC.png" /></p>
+<p><img alt="AWS hostVPC" src="../pics/t7-AWS_verifyVPW.png" /></p>
+<ul>
+<li>Then follow below steps:</li>
+</ul>
+<p><img alt="AWS hostVPC" src="../pics/t7-AWS_route_propagate.png" /></p>
+<ul>
+<li>Checkmark <strong>Propagate</strong> check box and click <strong>Save</strong>.</li>
+</ul>
+<p><img alt="AWS hostVPC" src="../pics/t7-AWS_route_propagate2.png" /></p>
+<ul>
+<li>Verify that route propagation is enabled on AWS host VPC.</li>
+</ul>
+<p><img alt="AWS hostVPC" src="../pics/t7-AWS_route_propagate3.png" /></p>
 <hr />
 <p>This concludes the process to onboard two (2) vEdge Cloud routers in AWS and configure <strong>Cloud onRamp for Iaas for AWS</strong>.</p>
               
